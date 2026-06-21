@@ -1,0 +1,434 @@
+{
+  "tech": [
+    {
+      "id": "frontend_dev",
+      "name": "Frontend Developer",
+      "emoji": "💻",
+      "description": "Veb saytların vizual hissəsini yaradır. HTML, CSS və JavaScript ilə istifadəçi interfeysi qurur.",
+      "skills": ["HTML/CSS", "JavaScript", "React", "Vue.js", "Figma"],
+      "roadmap": [
+        "1. HTML & CSS əsasları öyrən (1-2 ay)",
+        "2. JavaScript mənimsə (2-3 ay)",
+        "3. React/Vue framework seç (2-3 ay)",
+        "4. GitHub-da layihələr paylaş",
+        "5. İlk freelance iş al"
+      ],
+      "resources": ["freeCodeCamp", "The Odin Project", "MDN Web Docs", "Frontend Masters"],
+      "salary_range": "$40,000 - $130,000/il",
+      "work_style": "remote-friendly",
+      "personality_match": ["creative", "logical", "detail-oriented"],
+      "difficulty": "medium",
+      "demand": "very high"
+    },
+    {
+      "id": "backend_dev",
+      "name": "Backend Developer",
+      "emoji": "⚙️",
+      "description": "Server tərəfi məntiq, baza, API qurur. Sistemin 'beyni' kimi işləyir.",
+      "skills": ["Python/Node.js/Java", "SQL/NoSQL", "REST API", "Docker", "Linux"],
+      "roadmap": [
+        "1. Python və ya Node.js öyrən (2-3 ay)",
+        "2. Verilənlər bazası əsasları (SQL) (1-2 ay)",
+        "3. REST API qur (1 ay)",
+        "4. Docker ilə tanış ol",
+        "5. Cloud platformalar (AWS/GCP)"
+      ],
+      "resources": ["cs50.harvard.edu", "roadmap.sh", "Coursera", "Udemy"],
+      "salary_range": "$50,000 - $150,000/il",
+      "work_style": "remote-friendly",
+      "personality_match": ["logical", "systematic", "problem-solver"],
+      "difficulty": "medium-hard",
+      "demand": "very high"
+    },
+    {
+      "id": "data_scientist",
+      "name": "Data Scientist",
+      "emoji": "📊",
+      "description": "Böyük məlumat massivlərini analiz edir, maşın öyrənməsi modellər qurur.",
+      "skills": ["Python", "Machine Learning", "SQL", "Pandas/NumPy", "TensorFlow"],
+      "roadmap": [
+        "1. Python + Pandas öyrən (2 ay)",
+        "2. Statistika əsasları (1-2 ay)",
+        "3. Machine Learning (3-4 ay)",
+        "4. Kaggle yarışlarında iştirak et",
+        "5. Portfolio layihələr qur"
+      ],
+      "resources": ["Kaggle", "fast.ai", "Coursera ML", "Towards Data Science"],
+      "salary_range": "$60,000 - $160,000/il",
+      "work_style": "hybrid",
+      "personality_match": ["analytical", "curious", "mathematical"],
+      "difficulty": "hard",
+      "demand": "high"
+    },
+    {
+      "id": "mobile_dev",
+      "name": "Mobile Developer",
+      "emoji": "📱",
+      "description": "iOS və Android üçün mobil tətbiqetmələr hazırlayır.",
+      "skills": ["Flutter/React Native", "Swift/Kotlin", "Firebase", "UI/UX"],
+      "roadmap": [
+        "1. Flutter (Dart) və ya React Native seç",
+        "2. UI komponentləri öyrən (1-2 ay)",
+        "3. Firebase ilə backend qoş",
+        "4. App Store/Play Store-da yayımla",
+        "5. Freelance işlər al"
+      ],
+      "resources": ["Flutter.dev", "React Native docs", "Udemy", "YouTube"],
+      "salary_range": "$45,000 - $140,000/il",
+      "work_style": "remote-friendly",
+      "personality_match": ["creative", "user-focused", "technical"],
+      "difficulty": "medium",
+      "demand": "high"
+    },
+    {
+      "id": "devops_engineer",
+      "name": "DevOps Engineer",
+      "emoji": "🔧",
+      "description": "Proqram təminatının davamlı inteqrasiyası və çatdırılmasını avtomatlaşdırır.",
+      "skills": ["Docker", "Kubernetes", "CI/CD", "Linux", "Cloud (AWS/GCP/Azure)"],
+      "roadmap": [
+        "1. Linux əsasları (1 ay)",
+        "2. Docker öyrən (1 ay)",
+        "3. CI/CD pipeline qur (GitHub Actions)",
+        "4. Kubernetes mənimsə (2-3 ay)",
+        "5. Cloud sertifikat al"
+      ],
+      "resources": ["Linux Foundation", "AWS Training", "KodeKloud", "roadmap.sh"],
+      "salary_range": "$70,000 - $160,000/il",
+      "work_style": "remote-friendly",
+      "personality_match": ["systematic", "problem-solver", "detail-oriented"],
+      "difficulty": "hard",
+      "demand": "very high"
+    },
+    {
+      "id": "cybersecurity",
+      "name": "Cybersecurity Specialist",
+      "emoji": "🔐",
+      "description": "Sistemləri hacker hücumlarından qoruyur, zəifliklər tapır.",
+      "skills": ["Network Security", "Ethical Hacking", "Python", "Kali Linux", "SIEM"],
+      "roadmap": [
+        "1. Network əsasları öyrən",
+        "2. Linux mənimsə",
+        "3. CompTIA Security+ sertifikat",
+        "4. TryHackMe / HackTheBox platformaları",
+        "5. CEH sertifikat al"
+      ],
+      "resources": ["TryHackMe", "HackTheBox", "CompTIA", "SANS Institute"],
+      "salary_range": "$60,000 - $170,000/il",
+      "work_style": "hybrid",
+      "personality_match": ["curious", "analytical", "detail-oriented"],
+      "difficulty": "hard",
+      "demand": "very high"
+    }
+  ],
+  "design": [
+    {
+      "id": "ux_ui_designer",
+      "name": "UX/UI Designer",
+      "emoji": "🎨",
+      "description": "İstifadəçi dostu interfeyslər dizayn edir. Görsəllik + istifadəlilik birləşdirir.",
+      "skills": ["Figma", "User Research", "Prototyping", "Design Systems", "Adobe XD"],
+      "roadmap": [
+        "1. Dizayn prinsipləri öyrən (1 ay)",
+        "2. Figma mənimsə (1-2 ay)",
+        "3. UX Research metodları öyrən",
+        "4. Portfolio hazırla (5+ layihə)",
+        "5. Dribbble/Behance-də paylaş"
+      ],
+      "resources": ["Google UX Design Certificate", "Figma Community", "Nielsen Norman Group", "Dribbble"],
+      "salary_range": "$45,000 - $130,000/il",
+      "work_style": "remote-friendly",
+      "personality_match": ["creative", "empathetic", "user-focused"],
+      "difficulty": "medium",
+      "demand": "high"
+    },
+    {
+      "id": "graphic_designer",
+      "name": "Graphic Designer",
+      "emoji": "🖌️",
+      "description": "Logo, branding, reklam materialları, sosial media kontenti yaradır.",
+      "skills": ["Adobe Photoshop", "Illustrator", "InDesign", "Branding", "Typography"],
+      "roadmap": [
+        "1. Adobe Photoshop + Illustrator (2-3 ay)",
+        "2. Tipografiya və rəng nəzəriyyəsi",
+        "3. Portfolio layihələr hazırla",
+        "4. Freelance platformalarda işlə (Fiverr, Upwork)",
+        "5. Branding ixtisaslaşması"
+      ],
+      "resources": ["Adobe Creative Cloud", "Canva Design School", "Skillshare", "YouTube"],
+      "salary_range": "$35,000 - $90,000/il",
+      "work_style": "remote-friendly",
+      "personality_match": ["creative", "visual", "artistic"],
+      "difficulty": "medium",
+      "demand": "medium"
+    },
+    {
+      "id": "motion_designer",
+      "name": "Motion Designer",
+      "emoji": "🎬",
+      "description": "Animasiyalar, video effektlər, hərəkətli qrafikalar yaradır.",
+      "skills": ["After Effects", "Cinema 4D", "Premiere Pro", "Animation principles"],
+      "roadmap": [
+        "1. After Effects əsasları (2 ay)",
+        "2. Animasiya prinsipləri öyrən",
+        "3. Cinema 4D ilə 3D animasiya",
+        "4. Showreel hazırla",
+        "5. Studiya və ya freelance"
+      ],
+      "resources": ["School of Motion", "Motion Design School", "YouTube", "Skillshare"],
+      "salary_range": "$40,000 - $110,000/il",
+      "work_style": "remote-friendly",
+      "personality_match": ["creative", "technical", "detail-oriented"],
+      "difficulty": "medium",
+      "demand": "medium-high"
+    }
+  ],
+  "health": [
+    {
+      "id": "health_informatics",
+      "name": "Health Informatics Specialist",
+      "emoji": "🏥",
+      "description": "Tibb müəssisələrinin rəqəmsallaşmasına kömək edir, tibbi məlumatları idarə edir.",
+      "skills": ["EHR Systems", "HL7/FHIR", "SQL", "Healthcare Analytics", "Python"],
+      "roadmap": [
+        "1. Sağlamlıq sistemi haqqında öyrən",
+        "2. SQL + məlumat analizi",
+        "3. HIPAA uyğunluğu öyrən",
+        "4. Health IT sertifikat al (CHDA)",
+        "5. Xəstəxana IT şöbəsinə müraciət et"
+      ],
+      "resources": ["AHIMA", "HIMSS", "Coursera Health Informatics", "edX"],
+      "salary_range": "$55,000 - $110,000/il",
+      "work_style": "hybrid",
+      "personality_match": ["systematic", "helping", "detail-oriented"],
+      "difficulty": "medium",
+      "demand": "high"
+    },
+    {
+      "id": "nutritionist",
+      "name": "Nutritionist / Dietitian",
+      "emoji": "🥗",
+      "description": "İnsanlara sağlam qidalanma planları hazırlayır, sağlamlıq məqsədlərinə çatmağa kömək edir.",
+      "skills": ["Nutrition Science", "Counseling", "Meal Planning", "Clinical Assessment"],
+      "roadmap": [
+        "1. Qidalanma elmi üzrə lisenziyat",
+        "2. Klinik praktika (1 il)",
+        "3. RD (Registered Dietitian) sertifikat",
+        "4. Xüsusləşmə seç (sports/clinical/pediatric)",
+        "5. Öz müştəri bazanı qur"
+      ],
+      "resources": ["Academy of Nutrition and Dietetics", "Coursera", "PubMed"],
+      "salary_range": "$40,000 - $85,000/il",
+      "work_style": "in-person/hybrid",
+      "personality_match": ["helping", "scientific", "empathetic"],
+      "difficulty": "medium",
+      "demand": "medium-high"
+    },
+    {
+      "id": "mental_health_counselor",
+      "name": "Mental Health Counselor",
+      "emoji": "🧘",
+      "description": "İnsanlara psixoloji problemlər, stress, narahatlıq kimi məsələlərdə kömək edir.",
+      "skills": ["Active Listening", "CBT", "Crisis Intervention", "Empathy", "Documentation"],
+      "roadmap": [
+        "1. Psixologiya üzrə magistr",
+        "2. Supervised hours tamamla (3000+ saat)",
+        "3. Lisenziya imtahanı ver (LPC/LCSW)",
+        "4. İxtisaslaşma seç",
+        "5. Öz praktikasını aç"
+      ],
+      "resources": ["ACA", "NBCC", "Psychology Today", "coursera.org"],
+      "salary_range": "$40,000 - $90,000/il",
+      "work_style": "in-person/online",
+      "personality_match": ["empathetic", "helping", "patient"],
+      "difficulty": "hard",
+      "demand": "very high"
+    }
+  ],
+  "business": [
+    {
+      "id": "digital_marketer",
+      "name": "Digital Marketer",
+      "emoji": "📣",
+      "description": "Brendləri internet üzərindən tanıdır. SEO, sosial media, reklam kampaniyaları idarə edir.",
+      "skills": ["SEO/SEM", "Google Ads", "Social Media", "Content Marketing", "Analytics"],
+      "roadmap": [
+        "1. Google Digital Marketing sertifikatı",
+        "2. Google Analytics öyrən",
+        "3. Meta/Google Ads kursları",
+        "4. Öz bloq/sosial media hesabını idarə et",
+        "5. Agentliyə və ya freelance"
+      ],
+      "resources": ["Google Skillshop", "HubSpot Academy", "Coursera", "Neil Patel blog"],
+      "salary_range": "$35,000 - $100,000/il",
+      "work_style": "remote-friendly",
+      "personality_match": ["creative", "analytical", "communicative"],
+      "difficulty": "medium",
+      "demand": "very high"
+    },
+    {
+      "id": "product_manager",
+      "name": "Product Manager",
+      "emoji": "🗂️",
+      "description": "Texnologiya məhsullarının strategiyasını müəyyən edir, komandalar arasında körpü rolu oynayır.",
+      "skills": ["Product Strategy", "Agile/Scrum", "Data Analysis", "Stakeholder Management", "Roadmapping"],
+      "roadmap": [
+        "1. Agile/Scrum sertifikatı al",
+        "2. Tech şirkətdə başlanğıc rol tap",
+        "3. Product Analytics öyrən (Mixpanel, Amplitude)",
+        "4. APM proqramlarına müraciət et",
+        "5. Senior PM-ə doğru inkişaf et"
+      ],
+      "resources": ["Product School", "Reforge", "Lenny's Newsletter", "Pragmatic Institute"],
+      "salary_range": "$80,000 - $180,000/il",
+      "work_style": "hybrid",
+      "personality_match": ["leadership", "analytical", "communicative"],
+      "difficulty": "hard",
+      "demand": "very high"
+    },
+    {
+      "id": "entrepreneur",
+      "name": "Entrepreneur / Startup Founder",
+      "emoji": "🚀",
+      "description": "Öz biznesi və ya startapını qurur. Yüksək risk, yüksək mükafat.",
+      "skills": ["Business Planning", "Fundraising", "Leadership", "Marketing", "Financial Management"],
+      "roadmap": [
+        "1. Problem tap, həll yolu düşün",
+        "2. MVP (Minimum Viable Product) qur",
+        "3. İlk müştəriləri tap",
+        "4. Investor pitch hazırla",
+        "5. Şirkəti böyüt"
+      ],
+      "resources": ["Y Combinator", "Paul Graham Essays", "Startup School", "Product Hunt"],
+      "salary_range": "$0 - Limitsiz",
+      "work_style": "flexible",
+      "personality_match": ["risk-taker", "creative", "leadership"],
+      "difficulty": "very hard",
+      "demand": "self-created"
+    }
+  ],
+  "media": [
+    {
+      "id": "content_creator",
+      "name": "Content Creator / YouTuber",
+      "emoji": "🎥",
+      "description": "Video, podcast, blog kimi rəqəmsal məzmun yaradır. Auditoriya qurur.",
+      "skills": ["Video Editing", "Storytelling", "SEO", "Social Media", "Photography"],
+      "roadmap": [
+        "1. Niş seç (nə haqqında danışacaqsan?)",
+        "2. Video çəkiliş + montaj öyrən (Premiere Pro/DaVinci)",
+        "3. Konsistent olaraq yayımla (həftədə 1-2)",
+        "4. SEO optimizasiya et",
+        "5. Monetizasiya: AdSense, sponsorluq, məhsullar"
+      ],
+      "resources": ["YouTube Creator Academy", "ThinkMedia", "vidIQ", "Canva"],
+      "salary_range": "$0 - $500,000+/il",
+      "work_style": "remote/flexible",
+      "personality_match": ["creative", "communicative", "entrepreneurial"],
+      "difficulty": "medium",
+      "demand": "growing"
+    },
+    {
+      "id": "journalist",
+      "name": "Digital Journalist",
+      "emoji": "📰",
+      "description": "Onlayn media platformaları üçün məqalə, reportaj, müsahibə hazırlayır.",
+      "skills": ["Writing", "Research", "Interview", "Fact-checking", "CMS platforms"],
+      "roadmap": [
+        "1. Jurnalistika üzrə təhsil",
+        "2. Məktəb/kollec qəzetinə yaz",
+        "3. Staj tap",
+        "4. Portfolio (20+ məqalə) hazırla",
+        "5. Redaksiyalara müraciət et"
+      ],
+      "resources": ["Poynter", "Reuters Institute", "SPJ", "Coursera"],
+      "salary_range": "$30,000 - $80,000/il",
+      "work_style": "hybrid",
+      "personality_match": ["curious", "communicative", "detail-oriented"],
+      "difficulty": "medium",
+      "demand": "medium"
+    },
+    {
+      "id": "social_media_manager",
+      "name": "Social Media Manager",
+      "emoji": "📱",
+      "description": "Brendlər üçün sosial media hesablarını idarə edir, kontent strategiyası hazırlayır.",
+      "skills": ["Content Planning", "Copywriting", "Analytics", "Graphic Design basics", "Community Management"],
+      "roadmap": [
+        "1. Sosial media platformaları dərindən öyrən",
+        "2. Canva + basic dizayn",
+        "3. Analytics oxumağı öyrən",
+        "4. Freelance kiçik bizneslərlə işlə",
+        "5. Portfolio hazırla"
+      ],
+      "resources": ["HubSpot Social Media Certification", "Buffer Blog", "Hootsuite Academy", "Sprout Social"],
+      "salary_range": "$35,000 - $85,000/il",
+      "work_style": "remote-friendly",
+      "personality_match": ["creative", "communicative", "trend-aware"],
+      "difficulty": "easy-medium",
+      "demand": "high"
+    }
+  ],
+  "psychology": [
+    {
+      "id": "hr_specialist",
+      "name": "HR Specialist",
+      "emoji": "👥",
+      "description": "Şirkətlərdə işçi işə götürür, inkişafı idarə edir, şirkət mədəniyyəti yaradır.",
+      "skills": ["Recruitment", "Employee Relations", "HRIS", "Labor Law", "Training & Development"],
+      "roadmap": [
+        "1. HR və ya Psixologiya üzrə lisenziyat",
+        "2. SHRM-CP sertifikat",
+        "3. İşə qəbul agentliyindən başla",
+        "4. HRIS sistemlər öyrən (Workday, SAP)",
+        "5. HR Business Partner-ə inkişaf et"
+      ],
+      "resources": ["SHRM", "HRCI", "LinkedIn Learning", "Coursera"],
+      "salary_range": "$40,000 - $100,000/il",
+      "work_style": "hybrid",
+      "personality_match": ["empathetic", "communicative", "organized"],
+      "difficulty": "medium",
+      "demand": "high"
+    },
+    {
+      "id": "life_coach",
+      "name": "Life / Career Coach",
+      "emoji": "🌟",
+      "description": "İnsanlara həyat məqsədlərini, karyera keçidlərini planlaşdırmaqda kömək edir.",
+      "skills": ["Coaching Techniques", "Active Listening", "Goal Setting", "NLP", "Motivational Interviewing"],
+      "roadmap": [
+        "1. ICF sertifikatlaşdırılmış kouçinq proqramı",
+        "2. 100 saat practise coaching",
+        "3. Nişini tap (karyera/həyat/executive)",
+        "4. Sosial mediada mövcudluq yarat",
+        "5. Müştəri bazası qur"
+      ],
+      "resources": ["ICF", "CoachU", "iPEC", "Tony Robbins programs"],
+      "salary_range": "$30,000 - $200,000+/il",
+      "work_style": "remote/flexible",
+      "personality_match": ["empathetic", "motivational", "helping"],
+      "difficulty": "medium",
+      "demand": "growing"
+    },
+    {
+      "id": "researcher",
+      "name": "UX Researcher / Social Researcher",
+      "emoji": "🔬",
+      "description": "İnsanların davranışlarını, ehtiyaclarını araşdırır. Şirkətlər üçün anlayışlar yaradır.",
+      "skills": ["Research Methods", "User Interviews", "Survey Design", "Data Analysis", "Report Writing"],
+      "roadmap": [
+        "1. Tədqiqat metodologiyası öyrən",
+        "2. SPSS/R/Python ilə analiz",
+        "3. UX Research sertifikat (Nielsen Norman)",
+        "4. Portflio case studies hazırla",
+        "5. Tech şirkətlərə müraciət et"
+      ],
+      "resources": ["Nielsen Norman Group", "IDEO U", "Coursera UX Research", "Google Design"],
+      "salary_range": "$55,000 - $130,000/il",
+      "work_style": "hybrid",
+      "personality_match": ["analytical", "curious", "systematic"],
+      "difficulty": "medium-hard",
+      "demand": "high"
+    }
+  ]
+}

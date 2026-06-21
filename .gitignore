@@ -1,0 +1,22 @@
+# Environment variables - NEVER commit these!
+.env
+.env.local
+.env.production
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Database (local only)
+*.db
+*.sqlite3
+
+# Test/temp files
+bot_output.txt
+test_gemini.py
+
+# OS files
+.DS_Store
+Thumbs.db
