@@ -13,11 +13,11 @@ model = genai.GenerativeModel(
     generation_config=generation_config,
 )
 
-SYSTEM_CONTEXT = """Sen CareerCompass Discord botunun AI komekcisisən.
-Sən genclərin ve karyerasini deyişmek isteyen boyuklərin karyera yolu tapmasina kömek edirsən.
-Cavablarini Azerbaycan turkcesindem verir, genc, dostcasina, motivasiyaverici uslubda danişirsan.
-Murekkeb jarqon isletmirsən. Konkret, praktik, real melumat verirsən.
-Maksimum 3 karyera tovsiye edirsən.
+SYSTEM_CONTEXT = """You are the AI counselor inside the CareerCompass Discord bot.
+You help students and career changers explore realistic career directions.
+Write in clear, supportive English and avoid unexplained jargon.
+Give practical, specific guidance without presenting the result as a guarantee or a professional assessment.
+Recommend no more than three career paths.
 """
 
 
@@ -28,27 +28,27 @@ async def get_career_recommendations(answers: dict) -> str:
     """
     prompt = f"""{SYSTEM_CONTEXT}
 
-İstifadəçi aşağıdakı cavabları verdi:
-- Maraq sahəsi: {answers.get('interests', 'bilinmir')}
-- İş üslubu: {answers.get('work_style', 'bilinmir')}
-- Prioritet: {answers.get('priority', 'bilinmir')}
-- Güclü bacarıqlar: {answers.get('skills', 'bilinmir')}
-- Təcrübə/səviyyə: {answers.get('experience', 'bilinmir')}
+The user submitted these assessment answers:
+- Interest area: {answers.get('interests', 'unknown')}
+- Preferred work style: {answers.get('work_style', 'unknown')}
+- Career priority: {answers.get('priority', 'unknown')}
+- Strongest skills: {answers.get('skills', 'unknown')}
+- Experience level: {answers.get('experience', 'unknown')}
 
-Bu istifadəçiyə uyğun **dəqiq 3 karyera** tövsiyə et.
+Recommend **exactly three career paths** that fit this profile.
 
-Hər karyera üçün aşağıdakı formatda yaz (emoji işlət, Azərbaycan dilindən):
+Use this format for each path:
 
-🎯 **[Karyera Adı]**
-📌 **Niyə uyğundur:** [1-2 cümlə, bu insanın cavablarına uyğun izah]
-🛠️ **Əsas bacarıqlar:** [vergüllə ayrılmış 4-5 bacarıq]
-🚀 **Başlama yolu:** [2-3 konkret ilk addım]
-⏱️ **Hazırlıq müddəti:** [realistik müddət]
-💡 **Maraqlı fakt:** [bir maraqlı məlumat]
+🎯 **[Career Name]**
+📌 **Why it fits:** [1-2 sentences tied to the user's answers]
+🛠️ **Core skills:** [4-5 comma-separated skills]
+🚀 **First steps:** [2-3 concrete actions]
+⏱️ **Preparation time:** [a realistic range]
+💡 **Useful insight:** [one relevant fact]
 
 ---
 
-Cavabın sonunda qısa bir motivasiya mesajı yaz (2-3 cümlə).
+Finish with a short, grounded encouragement message of two or three sentences.
 """
     response = await asyncio.to_thread(model.generate_content, prompt)
     return response.text
@@ -60,21 +60,21 @@ async def get_ai_recommendation_from_text(user_text: str) -> str:
     """
     prompt = f"""{SYSTEM_CONTEXT}
 
-İstifadəçi özünü belə təsvir etdi:
+The user described themselves as follows:
 "{user_text}"
 
-Bu mətnə əsasən onun üçün ən uyğun 3 karyera tövsiyə et.
+Recommend the three most suitable career directions based on this description.
 
-Hər karyera üçün format:
-🎯 **[Karyera Adı]**
-📌 **Niyə uyğundur:** [izah - bu şəxsin sözlərindən nümunə gətir]
-🛠️ **Əsas bacarıqlar:** [4-5 bacarıq]
-🚀 **İlk addım:** [2-3 konkret addım]
-⏱️ **Hazırlıq:** [müddət]
+Use this format for each path:
+🎯 **[Career Name]**
+📌 **Why it fits:** [connect the explanation to details in the description]
+🛠️ **Core skills:** [4-5 skills]
+🚀 **First steps:** [2-3 concrete actions]
+⏱️ **Preparation:** [a realistic range]
 
 ---
 
-Sonda istifadəçini həvəsləndirən 2 cümlə yaz.
+Finish with two encouraging but realistic sentences.
 """
     response = await asyncio.to_thread(model.generate_content, prompt)
     return response.text
@@ -86,60 +86,60 @@ async def get_career_detail(career_name: str, career_data: dict) -> str:
     """
     prompt = f"""{SYSTEM_CONTEXT}
 
-İstifadəçi **{career_name}** karyerası haqqında daha ətraflı məlumat istəyir.
+The user wants a deeper explanation of a career in **{career_name}**.
 
-Mövcud məlumat:
-- Sahə: {career_data.get('description', '')}
-- Bacarıqlar: {', '.join(career_data.get('skills', []))}
-- Maaş aralığı: {career_data.get('salary_range', '')}
-- İş üslubu: {career_data.get('work_style', '')}
+Available catalog data:
+- Description: {career_data.get('description', '')}
+- Skills: {', '.join(career_data.get('skills', []))}
+- Salary range: {career_data.get('salary_range', '')}
+- Work style: {career_data.get('work_style', '')}
 
-Aşağıdakı mövzularda ətraflı, gəncə uyğun dildə izah et:
+Explain these topics in clear, student-friendly English:
 
-1. 🌍 **Gündəlik iş həyatı necədir?** (2-3 cümlə)
-2. 💰 **Pul qazanma potensialı** (başlanğıc → orta → senior)
-3. 🔮 **Gələcəyi necədir?** (AI dövrü, trend)
-4. 😊 **Bu karyeranın ən gözəl tərəfi nədir?**
-5. 😓 **Çətin tərəfləri?** (dürüst ol)
-6. 🌐 **Azərbaycanda bu sahənin vəziyyəti**
-7. 🎓 **Pulsuz öyrənmə resursları** (3-5 konkret resurs, link olmadan ad yaz)
+1. 🌍 **What does a typical day look like?** (2-3 sentences)
+2. 💰 **Earning potential** (entry → mid-level → senior; note that location matters)
+3. 🔮 **Future outlook** (including the effect of AI)
+4. 😊 **Most rewarding aspects**
+5. 😓 **Common challenges** (be candid)
+6. 🌐 **International and local opportunities**
+7. 🎓 **Free learning resources** (name 3-5 concrete resources without inventing links)
 """
     response = await asyncio.to_thread(model.generate_content, prompt)
     return response.text
 
 
-async def get_roadmap(career_name: str, experience_level: str = "başlanğıc") -> str:
+async def get_roadmap(career_name: str, experience_level: str = "beginner") -> str:
     """
     Generate a detailed learning roadmap for a career.
     """
     prompt = f"""{SYSTEM_CONTEXT}
 
-İstifadəçi **{career_name}** sahəsində **{experience_level}** səviyyəsindən başlayaraq karyera yolu xəritəsi istəyir.
+The user wants a learning roadmap for **{career_name}**, starting at the **{experience_level}** level.
 
-Aydın, addım-addım yol xəritəsi hazırla:
+Create a clear, step-by-step roadmap:
 
-📍 **0-3 Ay (Başlanğıc):**
-- [konkret tapşırıqlar]
+📍 **Months 0-3 (Foundations):**
+- [concrete tasks]
 
-📍 **3-6 Ay (Əsaslar):**
-- [tapşırıqlar]
+📍 **Months 3-6 (Core skills):**
+- [tasks]
 
-📍 **6-12 Ay (Praktika):**
-- [tapşırıqlar]
+📍 **Months 6-12 (Practice):**
+- [tasks]
 
-📍 **1-2 İl (Peşəkar):**
-- [tapşırıqlar]
+📍 **Years 1-2 (Professional growth):**
+- [tasks]
 
-📍 **2+ İl (Expert):**
-- [uzunmüddətli hədəflər]
+📍 **Year 2+ (Specialization):**
+- [long-term goals]
 
-💼 **İlk işi necə tapmaq:**
-[3-4 konkret tövsiyə]
+💼 **How to find a first opportunity:**
+[3-4 concrete suggestions]
 
-📚 **Pulsuz resurslar:**
-[5 konkret platforma/kurs adı]
+📚 **Free resources:**
+[five concrete platform or course names]
 
-Azərbaycan dilindən yaz, motivasiyaverici ton işlət.
+Use supportive, practical English and avoid promising a guaranteed outcome.
 """
     response = await asyncio.to_thread(model.generate_content, prompt)
     return response.text
@@ -151,12 +151,13 @@ async def chat_with_bot(message: str, history: list = None) -> str:
     """
     prompt = f"""{SYSTEM_CONTEXT}
 
-İstifadəçi sənə bu sualı verir: "{message}"
+The user asks: "{message}"
 
-Karyera məsləhətçisi kimi cavab ver.
-- Əgər karyera ilə əlaqəli sual deyilsə, mehriban şəkildə karyera mövzusuna yönləndir.
-- Cavabın qısa, aydın olsun (max 300 söz).
-- Discord formatına uyğun yazı işlət (**qalın**, *italic*).
+Respond as a career exploration assistant.
+- If the question is unrelated to careers or education, politely redirect it.
+- Keep the answer clear and under 300 words.
+- Use Discord-compatible Markdown such as **bold** and *italics*.
 """
     response = await asyncio.to_thread(model.generate_content, prompt)
     return response.text
+

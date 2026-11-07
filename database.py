@@ -65,7 +65,10 @@ def init_db():
 def upsert_user(discord_id: str, username: str):
     conn = get_connection()
     conn.execute(
-        "INSERT OR IGNORE INTO users (discord_id, username) VALUES (?, ?)",
+        """
+        INSERT INTO users (discord_id, username) VALUES (?, ?)
+        ON CONFLICT(discord_id) DO UPDATE SET username = excluded.username
+        """,
         (str(discord_id), username)
     )
     conn.commit()
@@ -195,3 +198,4 @@ def log_explore(discord_id: str, sector: str):
     )
     conn.commit()
     conn.close()
+

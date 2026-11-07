@@ -3,13 +3,13 @@ from config import COLOR_PRIMARY
 
 
 class MainMenuView(discord.ui.View):
-    """Ana menyu — 3 əsas düymə."""
+    """Main navigation with the three primary user journeys."""
 
     def __init__(self):
         super().__init__(timeout=300)
 
     @discord.ui.button(
-        label="Testə Başla",
+        label="Start Assessment",
         emoji="🎯",
         style=discord.ButtonStyle.primary,
         custom_id="main_test"
@@ -25,7 +25,7 @@ class MainMenuView(discord.ui.View):
         await interaction.response.edit_message(embed=embed, view=view)
 
     @discord.ui.button(
-        label="Karyera Kəşf Et",
+        label="Explore Careers",
         emoji="🔎",
         style=discord.ButtonStyle.secondary,
         custom_id="main_explore"
@@ -37,34 +37,34 @@ class MainMenuView(discord.ui.View):
         await interaction.response.edit_message(embed=embed, view=view)
 
     @discord.ui.button(
-        label="Mənə Tövsiyə Ver",
+        label="Ask for a Recommendation",
         emoji="📊",
         style=discord.ButtonStyle.success,
         custom_id="main_recommend"
     )
     async def recommend_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         embed = discord.Embed(
-            title="📊 AI Tövsiyə Sistemi",
+            title="📊 AI Recommendation",
             description=(
-                "Özün haqqında bir neçə cümlə yaz — maraqların, bacarıqların, "
-                "nə istədiyin.\n\n"
-                "**Məsələn:** *'Mən yaradıcı işlər sevirəm, insanlarla ünsiyyət "
-                "qurmağı sevirəm, texnologiyaya marağım var amma kod yazmağı bilmirəm...'*\n\n"
-                "💬 Cavabı bu kanalda **mətn mesajı** olaraq göndər!"
+                "Use the `/recommend` command and describe your interests, strengths, "
+                "and goals in a few sentences.\n\n"
+                "**Example:** *I enjoy creative work and collaborating with people. "
+                "I am curious about technology but I am still learning to code.*\n\n"
+                "CareerCompass will turn your description into three practical paths."
             ),
             color=COLOR_PRIMARY
         )
-        embed.set_footer(text="CareerCompass AI 🤖 • Gemini 2.0 ilə işləyir")
+        embed.set_footer(text="CareerCompass AI 🤖 • Powered by Gemini 2.5 Flash")
         view = WaitingForTextView()
         await interaction.response.edit_message(embed=embed, view=view)
 
 
 class WaitingForTextView(discord.ui.View):
-    """Geri dön düyməsi."""
+    """Return navigation for the recommendation instructions."""
     def __init__(self):
         super().__init__(timeout=300)
 
-    @discord.ui.button(label="← Geri", emoji="↩️", style=discord.ButtonStyle.secondary)
+    @discord.ui.button(label="← Back", emoji="↩️", style=discord.ButtonStyle.secondary)
     async def back_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         from cogs.welcome import build_greeting_embed
         embed = build_greeting_embed(interaction.user.display_name)
@@ -74,32 +74,32 @@ class WaitingForTextView(discord.ui.View):
 
 def build_greeting_embed(username: str) -> discord.Embed:
     embed = discord.Embed(
-        title="👋 Salam! Mən CareerCompass-ım!",
+        title="👋 Hello! I am CareerCompass.",
         description=(
-            f"**Xoş gəldin, {username}!** 🎉\n\n"
-            "Mən sənin gələcəyin üçün **doğru karyera yolunu** tapmağa kömək edən "
-            "AI köməkçiyəm.\n\n"
-            "Sənə uyğun karyera yollarını tapmaq üçün qısa bir test edək, "
-            "yoxsa birbaşa sahələri kəşf etmək istəyirsən?\n\n"
-            "⬇️ **Aşağıdan seçimini et:**"
+            f"**Welcome, {username}!** 🎉\n\n"
+            "I am an AI assistant that helps you explore **career paths that fit your "
+            "interests and goals**.\n\n"
+            "Take a short assessment, browse sectors, or describe yourself for a "
+            "personalized recommendation.\n\n"
+            "⬇️ **Choose where to begin:**"
         ),
         color=COLOR_PRIMARY
     )
     embed.add_field(
-        name="🎯 Testə Başla",
-        value="5 sual, 2 dəqiqə → fərdi tövsiyə",
+        name="🎯 Start Assessment",
+        value="5 questions, about 2 minutes → personalized directions",
         inline=True
     )
     embed.add_field(
-        name="🔎 Karyera Kəşf Et",
-        value="6 sahə → yüzlərlə karyera",
+        name="🔎 Explore Careers",
+        value="Browse six sectors and compare possible paths",
         inline=True
     )
     embed.add_field(
-        name="📊 Mənə Tövsiyə Ver",
-        value="Özün haqqında yaz → AI analiz edir",
+        name="📊 Get a Recommendation",
+        value="Describe yourself → AI suggests three paths",
         inline=True
     )
-    embed.set_footer(text="CareerCompass v1.0 🧭 • Gemini 2.0 ilə işləyir")
-    embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/🧭")
+    embed.set_footer(text="CareerCompass v1.1 🧭 • Powered by Gemini 2.5 Flash")
     return embed
+

@@ -9,7 +9,7 @@ class CareerTest(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @app_commands.command(name="test", description="Karyera testini başlat 🎯")
+    @app_commands.command(name="test", description="Start the career assessment 🎯")
     async def test(self, interaction: discord.Interaction):
         upsert_user(str(interaction.user.id), interaction.user.display_name)
         embed = build_question_embed(0, interaction.user.display_name)
@@ -23,3 +23,4 @@ class CareerTest(commands.Cog):
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(CareerTest(bot))
+

@@ -16,7 +16,11 @@ __pycache__/
 # Test/temp files
 bot_output.txt
 test_gemini.py
+.pytest_cache/
+.coverage
+htmlcov/
 
 # OS files
 .DS_Store
 Thumbs.db
+
