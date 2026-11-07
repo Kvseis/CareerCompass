@@ -66,7 +66,6 @@ class WaitingForTextView(discord.ui.View):
 
     @discord.ui.button(label="← Geri", emoji="↩️", style=discord.ButtonStyle.secondary)
     async def back_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        from cogs.welcome import build_greeting_embed
         embed = build_greeting_embed(interaction.user.display_name)
         view = MainMenuView()
         await interaction.response.edit_message(embed=embed, view=view)
