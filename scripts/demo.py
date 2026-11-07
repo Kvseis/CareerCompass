@@ -23,28 +23,38 @@ SAMPLE_ANSWERS = {
     "experience": "beginner",
 }
 
+ANSWER_LABELS = {
+    "interests": "Maraqlar",
+    "work_style": "İş tərzi",
+    "priority": "Prioritet",
+    "skills": "Bacarıqlar",
+    "experience": "Təcrübə",
+}
+
 
 def main() -> None:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+
     suggestions = recommend_from_answers(SAMPLE_ANSWERS)
 
-    print("CareerCompass - local demo")
+    print("CareerCompass - yerli demo")
     print("=" * 31)
-    print("Sample profile:")
+    print("Nümunə profil:")
     for key, value in SAMPLE_ANSWERS.items():
-        print(f"  {key.replace('_', ' ').title()}: {value}")
+        print(f"  {ANSWER_LABELS[key]}: {value}")
 
-    print("\nSuggested directions:")
+    print("\nTövsiyə olunan istiqamətlər:")
     for index, career in enumerate(suggestions, start=1):
         print(f"\n{index}. {career['name']}")
         print(f"   {career['description']}")
-        print(f"   First step: {career['roadmap'][0]}")
+        print(f"   İlk addım: {career['roadmap'][0]}")
 
     print(
-        "\nNote: this deterministic demo is a starting point, not a "
-        "professional career assessment."
+        "\nQeyd: bu deterministik demo başlanğıc nöqtəsidir, peşəkar "
+        "karyera qiymətləndirməsi deyil."
     )
 
 
 if __name__ == "__main__":
     main()
-

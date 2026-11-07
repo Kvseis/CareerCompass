@@ -8,65 +8,65 @@ from config import COLOR_PRIMARY, COLOR_INFO, COLOR_WARNING
 QUESTIONS = [
     {
         "id": "interests",
-        "text": "🌟 **Question 1/5 — Interests**\n\nWhich areas interest you most?",
+        "text": "🌟 **Sual 1/5 — Maraqlar**\n\nHansı sahələr səni daha çox maraqlandırır?",
         "type": "select",
         "options": [
-            ("💻 Technology & Programming", "tech"),
-            ("🎨 Design & Creativity", "design"),
-            ("🏥 Health & Medicine", "health"),
-            ("💼 Business & Finance", "business"),
-            ("📱 Media & Communication", "media"),
-            ("🧠 Psychology & People", "psychology"),
-            ("🔬 Science & Research", "science"),
-            ("🌿 Environment & Nature", "environment"),
+            ("💻 Texnologiya və Proqramlaşdırma", "tech"),
+            ("🎨 Dizayn və Yaradıcılıq", "design"),
+            ("🏥 Sağlamlıq və Tibb", "health"),
+            ("💼 Biznes və Maliyyə", "business"),
+            ("📱 Media və Kommunikasiya", "media"),
+            ("🧠 Psixologiya və İnsanlarla İş", "psychology"),
+            ("🔬 Elm və Tədqiqat", "science"),
+            ("🌿 Ətraf Mühit və Təbiət", "environment"),
         ]
     },
     {
         "id": "work_style",
-        "text": "👥 **Question 2/5 — Work style**\n\nHow do you prefer to work?",
+        "text": "👥 **Sual 2/5 — İş üslubu**\n\nNecə işləməyi üstün tutursan?",
         "type": "buttons",
         "options": [
-            ("🧍 Independently", "solo", discord.ButtonStyle.primary),
-            ("👥 With a team", "team", discord.ButtonStyle.secondary),
-            ("🔀 A mix of both", "both", discord.ButtonStyle.success),
+            ("🧍 Müstəqil", "solo", discord.ButtonStyle.primary),
+            ("👥 Komanda ilə", "team", discord.ButtonStyle.secondary),
+            ("🔀 Hər ikisi", "both", discord.ButtonStyle.success),
         ]
     },
     {
         "id": "priority",
-        "text": "💎 **Question 3/5 — Priority**\n\nWhat matters most to you in a career?",
+        "text": "💎 **Sual 3/5 — Prioritet**\n\nKaryerada sənin üçün ən vacib olan nədir?",
         "type": "select",
         "options": [
-            ("💰 Strong earning potential", "money"),
-            ("🎨 Creativity and expression", "creative"),
-            ("🤝 Helping people", "helping"),
-            ("🏠 Stability and security", "stable"),
-            ("🚀 Growth and learning", "growth"),
-            ("🌍 Positive social impact", "impact"),
+            ("💰 Yüksək qazanc potensialı", "money"),
+            ("🎨 Yaradıcılıq və özünüifadə", "creative"),
+            ("🤝 İnsanlara kömək etmək", "helping"),
+            ("🏠 Sabitlik və təhlükəsizlik", "stable"),
+            ("🚀 İnkişaf və öyrənmə", "growth"),
+            ("🌍 Cəmiyyətə müsbət təsir", "impact"),
         ]
     },
     {
         "id": "skills",
-        "text": "💪 **Question 4/5 — Strengths**\n\nWhich skills feel strongest to you?",
+        "text": "💪 **Sual 4/5 — Güclü tərəflər**\n\nHansı bacarıqların daha güclüdür?",
         "type": "select",
         "options": [
-            ("🧩 Analytical thinking & problem-solving", "analytical"),
-            ("✍️ Writing & communication", "communication"),
-            ("🎨 Creativity & visual thinking", "creative"),
-            ("📊 Mathematics & data analysis", "mathematical"),
-            ("🤝 Empathy & working with people", "interpersonal"),
-            ("🔧 Technical & hands-on skills", "technical"),
-            ("📋 Organization & planning", "organizational"),
+            ("🧩 Analitik düşüncə və problem həlli", "analytical"),
+            ("✍️ Yazı və ünsiyyət", "communication"),
+            ("🎨 Yaradıcılıq və vizual düşüncə", "creative"),
+            ("📊 Riyaziyyat və məlumat təhlili", "mathematical"),
+            ("🤝 Empatiya və insanlarla iş", "interpersonal"),
+            ("🔧 Texniki və praktik bacarıqlar", "technical"),
+            ("📋 Təşkilatçılıq və planlaşdırma", "organizational"),
         ]
     },
     {
         "id": "experience",
-        "text": "🎓 **Question 5/5 — Experience**\n\nWhere are you in your journey?",
+        "text": "🎓 **Sual 5/5 — Təcrübə**\n\nHazırda hansı mərhələdəsən?",
         "type": "buttons",
         "options": [
-            ("🌱 Complete beginner", "beginner", discord.ButtonStyle.secondary),
-            ("📚 Currently learning", "learning", discord.ButtonStyle.primary),
-            ("🔨 Some practical experience", "some_exp", discord.ButtonStyle.success),
-            ("💼 Changing careers", "career_change", discord.ButtonStyle.danger),
+            ("🌱 Tam başlanğıc", "beginner", discord.ButtonStyle.secondary),
+            ("📚 Hazırda öyrənirəm", "learning", discord.ButtonStyle.primary),
+            ("🔨 Bir qədər praktik təcrübəm var", "some_exp", discord.ButtonStyle.success),
+            ("💼 Karyeramı dəyişirəm", "career_change", discord.ButtonStyle.danger),
         ]
     },
 ]
@@ -77,11 +77,11 @@ def build_question_embed(q_index: int, username: str) -> discord.Embed:
     progress = "▓" * (q_index + 1) + "░" * (len(QUESTIONS) - q_index - 1)
 
     embed = discord.Embed(
-        title=f"🧪 Career Assessment  [{q_index + 1}/{len(QUESTIONS)}]",
+        title=f"🧪 Karyera Testi  [{q_index + 1}/{len(QUESTIONS)}]",
         description=f"{q['text']}\n\n`{progress}` {q_index + 1}/{len(QUESTIONS)}",
         color=COLOR_INFO
     )
-    embed.set_footer(text=f"CareerCompass • Personalized assessment for {username}")
+    embed.set_footer(text=f"CareerCompass • {username} üçün fərdi test")
     return embed
 
 
@@ -97,7 +97,7 @@ class QuestionSelect(discord.ui.Select):
             for label, value in q["options"]
         ]
         super().__init__(
-            placeholder="Choose an answer...",
+            placeholder="Cavabını seç...",
             min_values=1,
             max_values=1,
             options=options,
@@ -188,10 +188,10 @@ async def advance_test(interaction: discord.Interaction, next_q: int, answers: d
 async def show_loading(interaction: discord.Interaction, answers: dict):
     """Show loading state while Gemini generates recommendations."""
     loading_embed = discord.Embed(
-        title="⏳ Preparing your results...",
+        title="⏳ Nəticələr hazırlanır...",
         description=(
-            "🤖 Gemini is analyzing your answers.\n\n"
-            "This may take a few seconds. Thanks for your patience. ⌛"
+            "🤖 Gemini cavablarını təhlil edir.\n\n"
+            "Bu proses bir neçə saniyə çəkə bilər. Zəhmət olmasa gözlə. ⌛"
         ),
         color=COLOR_WARNING
     )
@@ -219,33 +219,33 @@ async def show_loading(interaction: discord.Interaction, answers: dict):
             from services.career_catalog import recommend_from_answers
             careers = recommend_from_answers(answers, limit=3)
 
-            recommendations_text = "🤖 **Local catalog recommendation:**\n\n"
-            recommendations_text += "Based on your answers, consider these career directions:\n\n"
+            recommendations_text = "🤖 **Yerli kataloq tövsiyəsi:**\n\n"
+            recommendations_text += "Cavablarına əsasən bu karyera istiqamətlərini nəzərdən keçir:\n\n"
             for c in careers[:3]:
                 recommendations_text += f"🎯 **{c['name']}**\n"
-                recommendations_text += f"📌 **Overview:** {c['description']}\n"
-                recommendations_text += f"🛠️ **Core skills:** {', '.join(c['skills'])}\n"
-                recommendations_text += f"🚀 **First step:** {c['roadmap'][0]}\n\n"
-            recommendations_text += "---\n\nUse these suggestions as a starting point, then research and test each path through small projects."
+                recommendations_text += f"📌 **Təsvir:** {c['description']}\n"
+                recommendations_text += f"🛠️ **Əsas bacarıqlar:** {', '.join(c['skills'])}\n"
+                recommendations_text += f"🚀 **İlk addım:** {c['roadmap'][0]}\n\n"
+            recommendations_text += "---\n\nBu tövsiyələri başlanğıc nöqtəsi kimi istifadə et; hər istiqaməti araşdır və kiçik layihələrlə sına."
 
             # Save to DB
             upsert_user(str(interaction.user.id), interaction.user.display_name)
             save_test_result(str(interaction.user.id), answers, [recommendations_text])
 
             embed = build_result_embed(recommendations_text, interaction.user.display_name)
-            embed.set_footer(text=f"CareerCompass 🧭 • Local catalog • Personalized for {interaction.user.display_name}")
+            embed.set_footer(text=f"CareerCompass 🧭 • Yerli kataloq • {interaction.user.display_name} üçün fərdiləşdirilib")
             view = ResultView(answers=answers)
             await interaction.edit_original_response(embed=embed, view=view)
 
         except Exception as fallback_err:
             print(f"[CRITICAL] Recommendation Fallback error: {fallback_err}")
             error_embed = discord.Embed(
-                title="❌ Results unavailable",
-                description="Neither the AI service nor the local catalog could complete this request. Please try again.",
+                title="❌ Nəticələr hazırlanmadı",
+                description="Nə AI xidməti, nə də yerli kataloq sorğunu tamamlaya bildi. Zəhmət olmasa yenidən cəhd et.",
                 color=0xE74C3C
             )
             view = discord.ui.View()
-            retry_btn = discord.ui.Button(label="🔄 Try Again", style=discord.ButtonStyle.danger)
+            retry_btn = discord.ui.Button(label="🔄 Yenidən Cəhd Et", style=discord.ButtonStyle.danger)
 
             async def retry_callback(i: discord.Interaction):
                 await show_loading(i, answers)
@@ -261,11 +261,10 @@ async def show_loading(interaction: discord.Interaction, answers: dict):
 
 class BackToMenuButton(discord.ui.Button):
     def __init__(self):
-        super().__init__(label="← Main Menu", emoji="🏠", style=discord.ButtonStyle.secondary, row=4)
+        super().__init__(label="← Əsas Menyu", emoji="🏠", style=discord.ButtonStyle.secondary, row=4)
 
     async def callback(self, interaction: discord.Interaction):
         from views.main_menu import MainMenuView, build_greeting_embed
         embed = build_greeting_embed(interaction.user.display_name)
         view = MainMenuView()
         await interaction.response.edit_message(embed=embed, view=view)
-
