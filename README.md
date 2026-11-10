@@ -14,9 +14,12 @@
 
 </div>
 
-CareerCompass helps students and career changers move from vague interests to
-concrete directions. It combines a short interactive assessment, a curated
-offline career catalog, and Gemini-powered explanations inside Discord.
+CareerCompass helps Azerbaijani students and career changers move from vague
+interests to concrete directions. It combines a short interactive assessment,
+a curated offline career catalog, and Gemini-powered explanations inside
+Discord. The product experience is Azerbaijani-first, while the repository
+documentation is written in English for international reviewers and
+contributors.
 
 The project is designed as an exploration aid—not a psychological assessment
 and not a replacement for a qualified career counselor.
@@ -34,7 +37,7 @@ first step. CareerCompass creates a guided flow:
 ## Features
 
 - Five-question interactive career assessment
-- English Discord interface and English AI responses
+- Azerbaijani-first Discord interface, catalog, and AI responses
 - Career exploration across six sectors
 - Free-text AI recommendations and career Q&A
 - Detailed career overviews and learning roadmaps
@@ -54,20 +57,20 @@ python scripts/demo.py
 Example:
 
 ```text
-CareerCompass - local demo
+CareerCompass - yerli demo
 ===============================
-Sample profile:
-  Interests: tech
-  Work Style: team
-  Priority: growth
-  Skills: analytical
-  Experience: beginner
+Nümunə profil:
+  Maraqlar: texnologiya
+  İş tərzi: komanda
+  Prioritet: inkişaf
+  Bacarıqlar: analitik düşüncə
+  Təcrübə: başlanğıc
 
-Suggested directions:
+Tövsiyə olunan istiqamətlər:
 
-1. Data Scientist
-   Analyzes large datasets and builds statistical or machine-learning models...
-   First step: Learn Python and Pandas (2 months)
+1. Data Analitiki
+   Məlumatları təhlil edir və qərarvermə üçün aydın nəticələr hazırlayır...
+   İlk addım: Python və Pandas əsaslarını öyrən (2 ay)
 ```
 
 See the complete [demo guide](./docs/DEMO.md).
@@ -81,7 +84,7 @@ flowchart LR
     C --> G[Gemini service]
     C --> S[Local catalog service]
     C --> DB[(SQLite)]
-    S --> J[(English career catalog)]
+    S --> J[(Azerbaijani career catalog)]
     G -. fallback .-> S
 ```
 
@@ -172,7 +175,8 @@ CareerCompass/
 ├── tests/                 # Automated test suite
 ├── views/                 # Interactive Discord UI
 ├── bot.py                 # Application entry point
-├── career_catalog.json    # Curated English career data
+├── career_catalog.json    # Default Azerbaijani career data
+├── career_catalog_en.json # Optional English reference dataset
 ├── database.py            # SQLite persistence
 └── gemini_client.py       # Gemini prompts and client
 ```
@@ -191,7 +195,7 @@ CareerCompass/
 ## Roadmap
 
 - Add recommendation-quality evaluation fixtures
-- Introduce optional multilingual localization
+- Add optional English and Turkish interfaces while keeping Azerbaijani as the default
 - Add administrator-configurable privacy and retention controls
 - Collect consent-based pilot feedback from students
 - Build a lightweight web dashboard
@@ -208,4 +212,3 @@ Built by [Kvseis](https://github.com/Kvseis) as an exploration of responsible
 AI, product design, and accessible career guidance.
 
 </div>
-

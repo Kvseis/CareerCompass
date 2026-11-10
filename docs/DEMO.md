@@ -9,8 +9,8 @@ AI API key.
 python scripts/demo.py
 ```
 
-It loads a sample student profile, ranks the English career catalog, and prints
-three suggested directions with a practical first step.
+It loads a sample student profile, ranks the Azerbaijani career catalog, and
+prints three suggested directions with a practical first step in Azerbaijani.
 
 ## Full Discord walkthrough
 
@@ -30,3 +30,9 @@ This repository does not currently provide a permanently hosted public bot.
 Reviewers can run the credential-free demo immediately or configure their own
 Discord application for the complete interactive experience.
 
+## Language note
+
+The product is Azerbaijani-first because its primary audience is Azerbaijani
+students. The README and technical documentation are intentionally English so
+international reviewers can assess the project without losing the local focus
+of the user experience.

@@ -27,10 +27,11 @@ flowchart LR
 | `bot.py` | Creates the Discord client, loads extensions, synchronizes commands, and starts the application. |
 | `cogs/` | Defines slash commands and event handlers. |
 | `views/` | Renders embeds, buttons, and select menus for the interactive Discord flow. |
-| `gemini_client.py` | Builds English prompts and isolates calls to Gemini. |
+| `gemini_client.py` | Builds Azerbaijani-first prompts and isolates calls to Gemini. |
 | `services/career_catalog.py` | Loads, validates, and queries the credential-free local catalog. |
 | `database.py` | Persists users, assessment history, favorites, and exploration events in SQLite. |
-| `career_catalog.json` | Stores the curated offline career dataset. |
+| `career_catalog.json` | Stores the default Azerbaijani offline career dataset. |
+| `career_catalog_en.json` | Preserves an optional English reference dataset for future localization. |
 
 ## Assessment flow
 
@@ -73,14 +74,20 @@ sequenceDiagram
 
 ## Reliability strategy
 
-The application keeps a local English career catalog so the assessment can
+The application keeps a local Azerbaijani career catalog so the assessment can
 still return transparent, deterministic suggestions if Gemini is unavailable.
 The local scorer is deliberately simple and is covered by automated tests.
+
+## Language strategy
+
+CareerCompass is designed for Azerbaijani students. User-facing commands,
+navigation, career content, fallback recommendations, and Gemini responses are
+therefore Azerbaijani by default. Repository documentation remains English so
+international admissions reviewers and contributors can evaluate the work.
 
 ## Extension points
 
 - Replace SQLite with PostgreSQL behind the database interface.
-- Add localization without changing command logic.
+- Add optional languages without changing the Azerbaijani default or command logic.
 - Introduce a web dashboard that consumes the same catalog service.
 - Add evaluation datasets for recommendation quality and bias review.
-

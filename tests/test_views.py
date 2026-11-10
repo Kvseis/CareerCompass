@@ -10,10 +10,10 @@ def test_assessment_contains_five_complete_questions():
     assert all(question["options"] for question in QUESTIONS)
 
 
-def test_question_embed_is_in_english():
+def test_question_embed_is_in_azerbaijani():
     embed = build_question_embed(0, "Alex")
-    assert "Career Assessment" in embed.title
-    assert "Question 1/5" in embed.description
+    assert "Karyera Testi" in embed.title
+    assert "Sual 1/5" in embed.description
     assert "Alex" in embed.footer.text
 
 
@@ -23,8 +23,8 @@ def test_main_and_explorer_embeds_render():
     sector = build_sector_embed("tech")
 
     assert "Alex" in greeting.description
-    assert explorer.title == "🔎 Career Explorer"
-    assert "Technology & Programming" in sector.title
+    assert explorer.title == "🔎 Karyera Kəşf Sistemi"
+    assert "Texnologiya və Proqramlaşdırma" in sector.title
     assert len(sector.fields) >= 3
 
 
@@ -45,6 +45,5 @@ def test_career_and_result_embeds_render():
     result_embed = build_result_embed("Try software engineering.", "Alex")
 
     assert career_embed.title == "💻 Software Engineer"
-    assert any(field.name == "🛠️ Core Skills" for field in career_embed.fields)
+    assert any(field.name == "🛠️ Əsas Bacarıqlar" for field in career_embed.fields)
     assert "Alex" in result_embed.title
-

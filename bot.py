@@ -44,46 +44,47 @@ COGS = [
 async def on_ready():
     print("=" * 50)
     print(f"  [OK] {BOT_NAME} v{BOT_VERSION}")
-    print(f"  [OK] Signed in as {bot.user}")
-    print(f"  [OK] Active in {len(bot.guilds)} server(s)")
+    print(f"  [OK] {bot.user} kimi daxil olundu")
+    print(f"  [OK] {len(bot.guilds)} serverdə aktivdir")
     print("=" * 50)
 
     # Sync slash commands
     try:
         synced = await bot.tree.sync()
-        print(f"  [SYNC] Synced {len(synced)} slash command(s)")
+        print(f"  [SYNC] {len(synced)} slash komandası sinxronlaşdırıldı")
     except Exception as e:
-        print(f"  [ERROR] Command sync failed: {e}")
+        print(f"  [ERROR] Komandalar sinxronlaşdırılmadı: {e}")
 
     # Set activity
     activity = discord.Activity(
         type=discord.ActivityType.watching,
-        name="career paths | /start"
+        name="karyera yolları | /start"
     )
     await bot.change_presence(status=discord.Status.online, activity=activity)
-    print("  [READY] Bot is ready.\n")
+    print("  [READY] Bot hazırdır.\n")
 
 
 @bot.event
 async def on_guild_join(guild: discord.Guild):
-    print(f"[+] Joined server: {guild.name} (ID: {guild.id})")
+    print(f"[+] Yeni server: {guild.name} (ID: {guild.id})")
     # Try to send welcome message to first available text channel
     for channel in guild.text_channels:
         if channel.permissions_for(guild.me).send_messages:
             embed = discord.Embed(
-                title="👋 Hello! I am CareerCompass.",
+                title="👋 Salam! Mən CareerCompass-am.",
                 description=(
-                    "Thanks for adding me to the server! 🎉\n\n"
-                    "I help students and career changers explore possible paths with AI.\n\n"
-                    "**Get started:** use `/start`.\n\n"
-                    "**Commands:**\n"
-                    "• `/start` — Main menu\n"
-                    "• `/test` — Career assessment\n"
-                    "• `/explore` — Explore sectors\n"
-                    "• `/recommend` — AI recommendation\n"
-                    "• `/chat` — Ask the AI counselor\n"
-                    "• `/favorites` — Saved careers\n"
-                    "• `/about` — About the bot"
+                    "Məni serverə əlavə etdiyiniz üçün təşəkkür edirəm! 🎉\n\n"
+                    "Azərbaycanlı şagirdlərə və karyerasını dəyişmək istəyənlərə "
+                    "AI vasitəsilə uyğun istiqamətləri araşdırmağa kömək edirəm.\n\n"
+                    "**Başlamaq üçün:** `/start` komandasından istifadə edin.\n\n"
+                    "**Komandalar:**\n"
+                    "• `/start` — Əsas menyu\n"
+                    "• `/test` — Karyera testi\n"
+                    "• `/explore` — Sahələri araşdır\n"
+                    "• `/recommend` — AI tövsiyəsi\n"
+                    "• `/chat` — AI məsləhətçisinə sual ver\n"
+                    "• `/favorites` — Saxlanılmış karyeralar\n"
+                    "• `/about` — Bot haqqında"
                 ),
                 color=0x22C55E
             )
@@ -107,12 +108,12 @@ async def on_app_command_error(interaction: discord.Interaction, error: discord.
     try:
         if interaction.response.is_done():
             await interaction.followup.send(
-                "❌ Something went wrong. Please try again.",
+                "❌ Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.",
                 ephemeral=True
             )
         else:
             await interaction.response.send_message(
-                "❌ Something went wrong. Please try again.",
+                "❌ Xəta baş verdi. Zəhmət olmasa yenidən cəhd edin.",
                 ephemeral=True
             )
     except Exception:
@@ -128,7 +129,7 @@ async def on_app_command_error(interaction: discord.Interaction, error: discord.
 async def sync_commands(ctx: commands.Context):
     """Manually synchronize slash commands (bot owner only)."""
     synced = await bot.tree.sync()
-    await ctx.send(f"✅ Synchronized {len(synced)} command(s).", delete_after=10)
+    await ctx.send(f"✅ {len(synced)} komanda sinxronlaşdırıldı.", delete_after=10)
 
 
 # ──────────────────────────────────────────────
@@ -138,7 +139,7 @@ async def sync_commands(ctx: commands.Context):
 async def main():
     # Validate config
     if not DISCORD_TOKEN:
-        print("[ERROR] DISCORD_TOKEN is missing. Check your .env file.")
+        print("[ERROR] DISCORD_TOKEN tapılmadı. .env faylını yoxlayın.")
         sys.exit(1)
 
     # Initialize database
@@ -149,14 +150,13 @@ async def main():
         for cog in COGS:
             try:
                 await bot.load_extension(cog)
-                print(f"  [OK] Loaded extension: {cog}")
+                print(f"  [OK] Modul yükləndi: {cog}")
             except Exception as e:
-                print(f"  [ERROR] Could not load extension [{cog}]: {e}")
+                print(f"  [ERROR] Modul yüklənmədi [{cog}]: {e}")
 
-        print(f"\n[START] Starting {BOT_NAME}...\n")
+        print(f"\n[START] {BOT_NAME} başladılır...\n")
         await bot.start(DISCORD_TOKEN)
 
 
 if __name__ == "__main__":
     asyncio.run(main())
-
