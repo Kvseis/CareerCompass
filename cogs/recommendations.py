@@ -9,23 +9,21 @@ from config import COLOR_PRIMARY, COLOR_SUCCESS, COLOR_WARNING
 class Recommendations(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        # Track users waiting to send a text description
-        self._waiting_for_text: set = set()
 
     # ── /recommend ─────────────────────────────────────────────────────────
     @app_commands.command(
         name="recommend",
-        description="Özün haqqında yaz, AI sənə karyera tövsiyə etsin 📊"
+        description="Describe yourself and receive AI career suggestions 📊"
     )
-    @app_commands.describe(description="Özün haqqında bir neçə cümlə yaz (maraqlar, bacarıqlar, hədəflər)")
+    @app_commands.describe(description="Share your interests, strengths, and goals")
     async def recommend(self, interaction: discord.Interaction, description: str):
         upsert_user(str(interaction.user.id), interaction.user.display_name)
 
         loading_embed = discord.Embed(
-            title="⏳ AI analiz edir...",
+            title="⏳ Analyzing your profile...",
             description=(
-                f"🤖 Gemini AI sənin təsvirinə əsasən karyera tövsiyəsi hazırlayır...\n\n"
-                f"**Sən yazdın:** *\"{description[:150]}...\"*"
+                "🤖 Gemini is preparing career suggestions from your description.\n\n"
+                f"**You wrote:** *\"{description[:150]}...\"*"
             ),
             color=COLOR_WARNING
         )
@@ -34,35 +32,35 @@ class Recommendations(commands.Cog):
         try:
             result = await get_ai_recommendation_from_text(description)
             embed = discord.Embed(
-                title=f"🎯 {interaction.user.display_name} üçün AI Tövsiyələri",
+                title=f"🎯 Career Suggestions for {interaction.user.display_name}",
                 description=result[:4096],
                 color=COLOR_SUCCESS
             )
-            embed.set_footer(text="CareerCompass 🧭 • Gemini AI tərəfindən hazırlanmışdır")
+            embed.set_footer(text="CareerCompass 🧭 • Generated with Gemini AI")
 
             view = PostRecommendView()
             await interaction.edit_original_response(embed=embed, view=view)
 
         except Exception as e:
             err_embed = discord.Embed(
-                title="❌ Xəta",
-                description=f"Bir xəta baş verdi: `{str(e)[:200]}`",
+                title="❌ Recommendation unavailable",
+                description="The AI service could not complete this request. Please try again shortly.",
                 color=0xE74C3C
             )
             await interaction.edit_original_response(embed=err_embed)
 
     # ── /favorites ──────────────────────────────────────────────────────────
-    @app_commands.command(name="favorites", description="Saxladığın karyeraları gör ⭐")
+    @app_commands.command(name="favorites", description="View your saved careers ⭐")
     async def favorites(self, interaction: discord.Interaction):
         upsert_user(str(interaction.user.id), interaction.user.display_name)
         favs = get_favorites(str(interaction.user.id))
 
         if not favs:
             embed = discord.Embed(
-                title="⭐ Favoritlər",
+                title="⭐ Saved Careers",
                 description=(
-                    "Hələ heç bir karyera əlavə etməmisən.\n\n"
-                    "Karyeraları kəşf etmək üçün `/explore` yaz və bəyəndiklərini ⭐ et!"
+                    "You have not saved a career yet.\n\n"
+                    "Use `/explore` and select ⭐ when you find an interesting path."
                 ),
                 color=COLOR_PRIMARY
             )
@@ -70,7 +68,7 @@ class Recommendations(commands.Cog):
             return
 
         embed = discord.Embed(
-            title=f"⭐ Sənin Favoritlərin — {len(favs)} karyera",
+            title=f"⭐ Your Saved Careers — {len(favs)} total",
             color=COLOR_SUCCESS
         )
         for fav in favs:
@@ -80,26 +78,26 @@ class Recommendations(commands.Cog):
                 value=(
                     f"💰 {cd.get('salary_range', 'N/A')}\n"
                     f"📈 {cd.get('demand', 'N/A')}\n"
-                    f"🗓️ Əlavə: {fav['added_at'][:10]}"
+                    f"🗓️ Saved: {fav['added_at'][:10]}"
                 ),
                 inline=True
             )
-        embed.set_footer(text="CareerCompass 🧭 • /explore ilə daha çox karyera kəşf et")
+        embed.set_footer(text="CareerCompass 🧭 • Use /explore to discover more paths")
         view = FavoritesView(favs)
         await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
 
     # ── /chat ────────────────────────────────────────────────────────────────
     @app_commands.command(
         name="chat",
-        description="CareerCompass AI ilə söhbət et 💬"
+        description="Ask the CareerCompass AI counselor a question 💬"
     )
-    @app_commands.describe(message="Karyera haqqında sualını yaz")
+    @app_commands.describe(message="Ask a career-related question")
     async def chat(self, interaction: discord.Interaction, message: str):
         upsert_user(str(interaction.user.id), interaction.user.display_name)
 
         loading_embed = discord.Embed(
-            title="💬 Cavab hazırlanır...",
-            description=f"🤖 AI sualını analiz edir...\n\n**Sual:** *\"{message[:100]}\"*",
+            title="💬 Preparing an answer...",
+            description=f"🤖 The AI is reviewing your question.\n\n**Question:** *\"{message[:100]}\"*",
             color=COLOR_WARNING
         )
         await interaction.response.send_message(embed=loading_embed)
@@ -107,42 +105,21 @@ class Recommendations(commands.Cog):
         try:
             response = await chat_with_bot(message)
             embed = discord.Embed(
-                title="🤖 CareerCompass AI Cavabı",
+                title="🤖 CareerCompass AI Response",
                 description=response[:4096],
                 color=COLOR_PRIMARY
             )
-            embed.add_field(name="❓ Sualın", value=f"*{message[:200]}*", inline=False)
-            embed.set_footer(text="CareerCompass 🧭 • /chat ilə daha çox sual ver")
+            embed.add_field(name="❓ Your question", value=f"*{message[:200]}*", inline=False)
+            embed.set_footer(text="CareerCompass 🧭 • Use /chat to ask another question")
             await interaction.edit_original_response(embed=embed)
         except Exception as e:
             await interaction.edit_original_response(
-                embed=discord.Embed(title="❌ Xəta", description=str(e)[:200], color=0xE74C3C)
+                embed=discord.Embed(
+                    title="❌ Response unavailable",
+                    description="The AI service could not complete this request. Please try again shortly.",
+                    color=0xE74C3C,
+                )
             )
-
-    # ── on_message — AI tövsiyə üçün mətn gözləmə ───────────────────────────
-    @commands.Cog.listener()
-    async def on_message(self, message: discord.Message):
-        """Handle free-text AI recommendation when user is prompted."""
-        if message.author.bot:
-            return
-        if str(message.author.id) not in self._waiting_for_text:
-            return
-
-        self._waiting_for_text.discard(str(message.author.id))
-        loading = await message.channel.send("⏳ AI analiz edir...")
-
-        try:
-            result = await get_ai_recommendation_from_text(message.content)
-            embed = discord.Embed(
-                title=f"🎯 {message.author.display_name} üçün AI Tövsiyələri",
-                description=result[:4096],
-                color=COLOR_SUCCESS
-            )
-            embed.set_footer(text="CareerCompass 🧭 • Gemini AI tərəfindən hazırlanmışdır")
-            await loading.delete()
-            await message.channel.send(embed=embed, view=PostRecommendView())
-        except Exception as e:
-            await loading.edit(content=f"❌ Xəta: {str(e)[:200]}")
 
 
 # ──────────────────────────────────────────────
@@ -153,14 +130,14 @@ class PostRecommendView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=300)
 
-    @discord.ui.button(label="🔎 Karyeraları Kəşf Et", style=discord.ButtonStyle.primary)
+    @discord.ui.button(label="🔎 Explore Careers", style=discord.ButtonStyle.primary)
     async def explore_btn(self, interaction: discord.Interaction, button: discord.ui.Button):
         from views.explore_views import ExploreView, build_explore_embed
         embed = build_explore_embed()
         view = ExploreView()
         await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
 
-    @discord.ui.button(label="🎯 Testi Et", style=discord.ButtonStyle.secondary)
+    @discord.ui.button(label="🎯 Take the Assessment", style=discord.ButtonStyle.secondary)
     async def test_btn(self, interaction: discord.Interaction, button: discord.ui.Button):
         from views.test_views import QuestionSelectView, build_question_embed, QUESTIONS
         embed = build_question_embed(0, interaction.user.display_name)
@@ -178,7 +155,7 @@ class FavoritesView(discord.ui.View):
         if favs:
             self.add_item(RemoveFavoriteSelect(favs))
 
-    @discord.ui.button(label="🔎 Daha Çox Kəşf Et", style=discord.ButtonStyle.primary)
+    @discord.ui.button(label="🔎 Explore More", style=discord.ButtonStyle.primary)
     async def explore_btn(self, interaction: discord.Interaction, button: discord.ui.Button):
         from views.explore_views import ExploreView, build_explore_embed
         embed = build_explore_embed()
@@ -192,12 +169,12 @@ class RemoveFavoriteSelect(discord.ui.Select):
             discord.SelectOption(
                 label=f"❌ {fav['career_name']}",
                 value=fav['career_id'],
-                description="Favoritlərdən çıxar"
+                description="Remove from saved careers"
             )
             for fav in favs[:25]
         ]
         super().__init__(
-            placeholder="Silmək istədiyini seç...",
+            placeholder="Choose a career to remove...",
             min_values=1,
             max_values=1,
             options=options
@@ -208,11 +185,12 @@ class RemoveFavoriteSelect(discord.ui.Select):
         removed = remove_favorite(str(interaction.user.id), career_id)
         if removed:
             await interaction.response.send_message(
-                f"🗑️ Karyera favoritlərdən silindi.", ephemeral=True
+                "🗑️ Career removed from your saved list.", ephemeral=True
             )
         else:
-            await interaction.response.send_message("ℹ️ Karyera tapılmadı.", ephemeral=True)
+            await interaction.response.send_message("ℹ️ Career not found.", ephemeral=True)
 
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Recommendations(bot))
+
