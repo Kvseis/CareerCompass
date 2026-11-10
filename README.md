@@ -1,3 +1,4 @@
+<img width="668" height="522" alt="logocarrerfinder" src="https://github.com/user-attachments/assets/e2c60ce0-5402-42f9-bbfb-9eb8cf3d45f0" />
 # 🧭 CareerCompass Discord Botu
 
 Gənclərin və karyerasını dəyişmək istəyənlərin özlərinə uyğun karyera yolunu tapmalarına kömək edən **AI-powered Discord botu**.
