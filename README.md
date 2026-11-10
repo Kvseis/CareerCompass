@@ -24,10 +24,24 @@ contributors.
 The project is designed as an exploration aid—not a psychological assessment
 and not a replacement for a qualified career counselor.
 
+## At a glance
+
+| | |
+| --- | --- |
+| **Primary audience** | Azerbaijani students and early-career learners |
+| **Product language** | Azerbaijani by default |
+| **Main experience** | Interactive Discord commands, buttons, and select menus |
+| **Recommendation paths** | Gemini-generated guidance with a deterministic local fallback for the assessment |
+| **Local data** | Curated Azerbaijani catalog across six sectors |
+| **Persistence** | SQLite for users, results, favorites, and exploration history |
+| **Quality checks** | 13 automated tests on Python 3.11 and 3.12 |
+| **Public demo status** | Credential-free local demo; no permanently hosted bot yet |
+
 ## Why this project exists
 
-Career information is often scattered, generic, or difficult to turn into a
-first step. CareerCompass creates a guided flow:
+Career information available to Azerbaijani students is often scattered,
+generic, or difficult to turn into a first step. CareerCompass creates a
+guided flow in the student's own language:
 
 1. understand a user's interests and priorities;
 2. suggest a small number of relevant directions;
@@ -68,31 +82,85 @@ Nümunə profil:
 
 Tövsiyə olunan istiqamətlər:
 
-1. Data Analitiki
-   Məlumatları təhlil edir və qərarvermə üçün aydın nəticələr hazırlayır...
-   İlk addım: Python və Pandas əsaslarını öyrən (2 ay)
+1. Data Scientist
+   Böyük məlumat massivlərini analiz edir, maşın öyrənməsi modelləri qurur...
+   İlk addım: Python və Pandas öyrən (2 ay)
 ```
 
 See the complete [demo guide](./docs/DEMO.md).
 
-## Architecture
+## How it works
 
 ```mermaid
-flowchart LR
-    U[Discord user] --> C[Cogs and commands]
-    C --> V[Interactive views]
-    C --> G[Gemini service]
-    C --> S[Local catalog service]
-    C --> DB[(SQLite)]
-    S --> J[(Azerbaijani career catalog)]
-    G -. fallback .-> S
+flowchart TD
+    U[Azerbaijani student] --> D[Discord commands and interactive views]
+    D --> J{Choose a journey}
+
+    J --> T[Five-question assessment]
+    J --> E[Explore six career sectors]
+    J --> Q[Free-text recommendation or career question]
+
+    T --> G[Gemini recommendations in Azerbaijani]
+    G -. API unavailable .-> F[Deterministic Azerbaijani catalog fallback]
+    E --> C[Local career profiles]
+    C --> A[Optional AI detail or roadmap]
+    A -. API unavailable .-> C
+    Q --> R[Gemini answer in Azerbaijani]
+
+    T --> DB[(SQLite)]
+    E --> DB
+    C --> DB
 ```
 
-The Discord presentation layer is separated from the local recommendation
-service, data catalog, AI client, and persistence layer. This keeps the core
-logic testable without external credentials.
+The code is organized into four clear responsibilities:
+
+1. **Discord delivery** — `cogs/` defines commands and `views/` manages the
+   interactive user experience.
+2. **AI guidance** — `gemini_client.py` builds constrained Azerbaijani prompts
+   for recommendations, explanations, roadmaps, and career Q&A.
+3. **Reliable local guidance** — `services/career_catalog.py` loads and ranks
+   the Azerbaijani catalog when the assessment cannot reach Gemini.
+4. **Persistence** — `database.py` stores test history, favorites, and
+   exploration events in SQLite.
+
+The guided assessment, career browsing, and local demo can still provide useful
+information without a successful AI request. The free-text `/recommend` and
+`/chat` commands require Gemini because their inputs cannot be answered by the
+fixed catalog alone.
 
 Read the full [architecture document](./docs/ARCHITECTURE.md).
+
+## Azerbaijani-first by design
+
+Yes—the bot is designed to answer in Azerbaijani.
+
+- All primary commands, buttons, questions, loading states, and error messages
+  are written in Azerbaijani.
+- The Gemini system instruction explicitly requires natural, clear Azerbaijani
+  and discourages artificial translation or unexplained jargon.
+- The active offline catalog, fallback recommendations, and local demo are
+  Azerbaijani.
+- International career names such as *Frontend Developer* may remain in their
+  commonly recognized form, while their explanations and guidance are
+  Azerbaijani.
+- The repository documentation is English so international admissions
+  reviewers and contributors can evaluate the engineering work.
+
+## What this project demonstrates
+
+- **Problem selection:** a locally relevant education and career-guidance need
+- **Product thinking:** short onboarding, three distinct user journeys, saved
+  favorites, and clear next actions
+- **Software architecture:** separation between Discord UI, AI integration,
+  local recommendation logic, and persistence
+- **Reliability:** useful fallback behavior instead of total failure when the
+  AI service is unavailable
+- **Responsible AI:** explicit limitations, realistic language, privacy notes,
+  and no promise that a recommendation guarantees an outcome
+- **Engineering quality:** deterministic core logic, automated tests, and a
+  two-version continuous-integration matrix
+- **Localization:** an Azerbaijani-first product with English technical
+  documentation for international review
 
 ## Commands
 
@@ -191,6 +259,15 @@ CareerCompass/
 - Free-text descriptions and assessment answers may be sent to Gemini.
 - Secrets are loaded from environment variables and excluded from version
   control.
+
+## Current limitations
+
+- The project does not yet provide a permanently hosted public Discord bot.
+- The local scorer is intentionally lightweight and has not been validated as
+  a psychological or academic assessment.
+- Free-text AI recommendations and chat require a configured Gemini API key.
+- Salary ranges are broad reference values and must be checked against the
+  user's location and current market conditions.
 
 ## Roadmap
 
